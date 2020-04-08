@@ -1,5 +1,4 @@
 let express = require("express")
-let ejs = require("ejs")
 let url = require('url')
 let path = require('path')
 
@@ -11,7 +10,6 @@ let options = {
 
 // 应用级中间件
 app.use(function(req, res, next) {
-    console.log("Mid1")
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
@@ -19,7 +17,6 @@ app.use(function(req, res, next) {
 
 // 应用级中间件
 app.use(function (req, res, next) {
-    console.log("Mid2")
     // 去除查询参数，支持heightMap和Quantized-Mesh
     let filePath = path.join(__dirname, url.parse(req.url).pathname);
     let pathTmep = path.extname(filePath)
@@ -42,7 +39,7 @@ app.get("/", function (req, res, next) {
 // 静态资源中间件放到最后，确保应用级中间件被使用加上http头部信息
 app.use(express.static(__dirname + "/node_modules/cesium/Build", options));
 app.use(express.static(__dirname + "/public", options));
- 
+
 // 异常处理中间件
 app.use(function (req, res, next) {
     res.status(404).send('So sorry, we cannot find that!');

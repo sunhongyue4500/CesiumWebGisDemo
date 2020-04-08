@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cesium": "^1.55.0",
+    "cesium": "^1.68.0",
     "express": "^4.17.0"
   }
 }

@@ -1,14 +1,16 @@
 const MAP_PATH = "/map/"
 const TERRAIN_PATH = "/terrain/"
 const terrainProviderTemp = new Cesium.CesiumTerrainProvider({
-    url: TERRAIN_PATH
+    url: TERRAIN_PATH,
 })
-// test
-let viewer = new Cesium.Viewer('cesiumContainer', {
-    shouldAnimate: true,
-    imageryProvider: Cesium.createTileMapServiceImageryProvider({
-        url: Cesium.buildModuleUrl(MAP_PATH)
-    }),
-    terrainProvider: terrainProviderTemp,
+
+const imageryProvider = new Cesium.TileMapServiceImageryProvider({
+    url : MAP_PATH,
+    fileExtension: 'jpg',
 });
 
+let viewer = new Cesium.Viewer('cesiumContainer', {
+    shouldAnimate: true,
+    imageryProvider: imageryProvider,
+    terrainProvider: terrainProviderTemp,
+});
